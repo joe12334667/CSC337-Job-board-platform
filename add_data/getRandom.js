@@ -226,8 +226,42 @@ function getRandomJob(RecruiterUserId, RecruiterUserName) {
     return obj;
 }
 
+function getRandomCompany(companyName, userId) {
+    const name = companyName;
+    const description = faker.company.bs();
+    const logoUrl = faker.image.imageUrl();
+    const websiteUrl = faker.internet.url();
+    const industry = faker.company.bsNoun();
+    const headquarters = faker.address.city();
+    const specialties = [];
+    for (i = 0; i < 4; i++)
+    specialties.push(faker.company.catchPhraseDescriptor());
+    const createdAt = new Date();
+    const updatedAt = new Date();
+
+    const obj = {
+        name,
+        description,
+        logoUrl,
+        websiteUrl,
+        industry,
+        headquarters,
+        specialties,
+        userId,
+        createdAt,
+        updatedAt,
+    };
+
+    return obj;
+}
+
+
+
+
+
 exports.getRandomUser = getRandomUser;
 exports.getRandomJob = getRandomJob;
 exports.getRandomNumber = getRandomNumber;
+exports.getRandomCompany = getRandomCompany;
 // console.log(getRandomUser());
-// console.log(getRandomJob("123", "name"));
+// console.log(getRandomCompany("com123", "joe123"));

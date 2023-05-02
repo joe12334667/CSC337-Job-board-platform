@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const CompanyProfileSchema = mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+        unique: true
+      },
     description: String, // Description of the company
     logoUrl: String, // URL of the company's logo image
     websiteUrl: String, // URL of the company's website
