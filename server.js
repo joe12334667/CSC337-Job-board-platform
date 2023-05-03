@@ -88,14 +88,14 @@ async function filterJob(req) {
     console.log(req.body);
 
     if (req.body.title != "" && req.body.title != undefined) { } {
-        or.push({ title: new RegExp('\w*' + req.body.title + '\w*') });
-        or.push({ description: new RegExp('\w*' + req.body.title + '\w*') });
+        or.push({ title: new RegExp('\w*' + req.body.title.toLowerCase() + '\w*', "i") });
+        or.push({ description: new RegExp('\w*' + req.body.title.toLowerCase() + '\w*', "i") });
     }
     if (req.body.company != "" && req.body.company != undefined) {
-        or.push({ company: new RegExp('\w*' + req.body.company + '\w*') });
+        or.push({ company: new RegExp('\w*' + req.body.company.toLowerCase() + '\w*', "i") });
     }
     if (req.body.location != "" && req.body.location != undefined) {
-        and.push({ location: new RegExp('\w*' + req.body.location + '\w*') });
+        and.push({ location: new RegExp('\w*' + req.body.location.toLowerCase() + '\w*', "i") });
     }
     if (req.body.employmentType != "" && req.body.employmentType != undefined) {
         and.push({ employmentType: req.body.employmentType });
