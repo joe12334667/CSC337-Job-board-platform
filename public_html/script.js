@@ -44,35 +44,50 @@ function addUser() {
             break;
         }
     }
+
     //add recruiter/seeker and email
 
-    if(u == undefined || p == undefined || e == undefined || userType == undefined) {
-        document.getElementById("create_p").value = "Enter all required information";
-    } else {
-        let url =  URL + '/add/user/';
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({
-                username: u,
-                password: p,
-                email: e,
-                accountType: userType,
-            }),
-            headers: {
-                'Content-type': 'application/json',
-            }
-        })
-            .then((response) => {
-                return response.text();
+    if(u == undefined) {
+        document.getElementById("create_p").value = "Must enter a username.";
+    }else if (p == undefined) {
+        document.getElementById("create_p").value = "Must enter a password. It's recommended you choose a strong password for your new account";
+    }else if (e == undefined) {
+        document.getElementById("create_p").value = "Must enter an email.";
+    }else if (userType == undefined) {
+        document.getElementById("create_p").value = "Must state what user experience you are looking for.";
+    }else {
+        if(!e.includes("@")) 
+            document.getElementById("create_p").value = "Enter a valid email address.";
+        else {
+            let url =  URL + '/add/user/';
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: u,
+                    password: p,
+                    email: e,
+                    accountType: userType,
+                }),
+                headers: {
+                    'Content-type': 'application/json',
+                }
             })
-            .then((text) => {
-                console.log(text);
-                alert(text);
-            })
-            .catch((error) => {
-                console.log('THERE WAS A PROBLEM');
-                console.log(error);
-            });
+                .then((response) => {
+                    return response.text();
+                })
+                .then((results) => {
+                    console.log(results);
+                    if(results == 'taken') {
+                        document.getElementById("create_p").value = 'That username is taken. Please choose another.';
+                    } else {
+                        alert('User added!');
+                    }
+                })
+                .catch((error) => {
+                    console.log('THERE WAS A PROBLEM');
+                    console.log(error);
+                });
+        }
     }
 }
 
@@ -196,12 +211,12 @@ function searchUsername(u) {
 }
 
 function searchJob() {
-
     var t = document.getElementById("title").value;
     var l = document.getElementById("location").value;
     var e = document.getElementById("employment-type").value;
     var a = document.getElementById("salary").value;
     var d = document.getElementById("date").value;
+
     if (d == "24h") {
         d = new Date();
         d.setDate(d.getDate() - 1);

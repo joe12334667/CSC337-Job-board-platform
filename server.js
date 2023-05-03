@@ -178,10 +178,10 @@ async function startServer() {
     app.post('/add/user/', function (req, res) {
         // res.write(JSON.stringify(User.find().exec()));
         // console.log(req.body.username);
-        let p1 = User.find({ username: req.params.username }).exec();
+        let p1 = User.find({ username: req.body.username }).exec();
         p1.then((results) => {
             if (results.length > 0) {
-                res.end('That username is already taken.');
+                res.end('taken');
             } else {
                 bcrypt.hash(req.body.password, saltRounds, function (err, hs) {
                     var newUser = new User({
