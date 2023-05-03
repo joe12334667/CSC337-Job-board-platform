@@ -106,7 +106,7 @@ function addItem() {
         .then((text) => {
             console.log(text);
             alert(text);
-            window.location.href = "/home.html";
+            window.location.href = "/User_home.html";
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
@@ -185,10 +185,10 @@ function searchUsername(u) {
         return results.json();
     }).then((items) => {
         if (items[0].accountType == 'recruiter') {
-            window.location.href = "/recruiter.html";
+            window.location.href = "/job_post.html";
         } else {
             //job seeker
-            window.location.href = "/home.html";
+            window.location.href = "/User_home.html";
         }
     }).catch(() => {
         alert('something went wrong');
@@ -383,8 +383,7 @@ function getCookie() {
 }
 
 function sendUToProfile() {
-    //different profiles for seeker/recruiter?
-    //send to user profile for now
+    console.log('hello')
     window.location.href = "/User_profile.html";
 }
 
