@@ -90,7 +90,7 @@ async function filterJob(req) {
     or = [];
     console.log(req.body);
 
-    if (!req.body.title &&req.body.title != "" && req.body.title != undefined) { } {
+    if (!req.body.title && req.body.title != "" && req.body.title != undefined) { } {
         or.push({ title: new RegExp('\w*' + req.body.title.toLowerCase() + '\w*', "i") });
         or.push({ description: new RegExp('\w*' + req.body.title.toLowerCase() + '\w*', "i") });
     }
@@ -276,6 +276,14 @@ async function startServer() {
         Job.find(filter).exec().then((results) => {
             res.end(JSON.stringify(results));
         })
+    });
+
+
+    app.get('/search/company/:companyName', async function (req, res) {
+        CompanyProfile.findOne({ name: new RegExp('\w*' + req.params.companyName.trim().toLowerCase() + '\w*', "i") }).then((results) => {
+            if(!results) return res.end('not find');
+            return res.end(JSON.stringify(results));
+        }).catch((err) => { console.log(err); res.end("fail"); });
     });
 
     app.get("/search/job/applier/:jobId", (req, res) => {
