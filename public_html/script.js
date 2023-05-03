@@ -48,16 +48,16 @@ function addUser() {
     //add recruiter/seeker and email
 
     if(u == undefined) {
-        document.getElementById("create_p").value = "Must enter a username.";
+        document.getElementById("create_p").innerHTML = "Must enter a username.";
     }else if (p == undefined) {
-        document.getElementById("create_p").value = "Must enter a password. It's recommended you choose a strong password for your new account";
+        document.getElementById("create_p").innerHTML = "Must enter a password. It's recommended you choose a strong password for your new account";
     }else if (e == undefined) {
-        document.getElementById("create_p").value = "Must enter an email.";
+        document.getElementById("create_p").innerHTML = "Must enter an email.";
     }else if (userType == undefined) {
-        document.getElementById("create_p").value = "Must state what user experience you are looking for.";
+        document.getElementById("create_p").innerHTML = "Must state what user experience you are looking for.";
     }else {
         if(!e.includes("@")) 
-            document.getElementById("create_p").value = "Enter a valid email address.";
+            document.getElementById("create_p").innerHTML = "Enter a valid email address.";
         else {
             let url =  URL + '/add/user/';
             fetch(url, {
@@ -78,9 +78,10 @@ function addUser() {
                 .then((results) => {
                     console.log(results);
                     if(results == 'taken') {
-                        document.getElementById("create_p").value = 'That username is taken. Please choose another.';
+                        document.getElementById("create_p").innerHTML = 'That username is taken. Please choose another.';
                     } else {
-                        alert('User added!');
+                        document.getElementById("create_p").innerHTML = 'Account created! Log in to start yopur job looking needs.';
+
                     }
                 })
                 .catch((error) => {
@@ -191,7 +192,7 @@ function addPosting() {
         });
 }
 
-function searchUsername(u) {
+function searchUsername(u, at) {
     console.log('i got here');
     var url = '/search/users/' + u;
 
@@ -199,7 +200,7 @@ function searchUsername(u) {
     let ps = p.then((results) => {
         return results.json();
     }).then((items) => {
-        if (items[0].accountType == 'recruiter') {
+        if (items[0].accountType == 'recruiter' || at == "recruiter") {
             window.location.href = "/job_post.html";
         } else {
             //job seeker
@@ -398,12 +399,20 @@ function getCookie() {
 }
 
 function sendUToProfile() {
-    console.log('hello')
     window.location.href = "/User_profile.html";
 }
 
 function sendRToProfile(){
     window.location.href = "/recruiter_profile.html";
+}
+
+function sendToHelp(){
+    window.location.href = "/help.html";
+}
+
+function sendToJobs(){
+    console.log('hello?')
+    window.location.href = "/User_home.html";
 }
 
 function addExperience(){

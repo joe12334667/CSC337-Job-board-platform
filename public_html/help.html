@@ -17,18 +17,21 @@
 </head>
 <body>
     <div id="header"> 
-        <div><h1 id="logo"> Job Board </h1></div>
+
+        <div>
+            <h1 id="logo"> Job Board </h1>
+        </div>
 
         <div id="info"> 
-           <div> <p onclick="sendToJobs()"> Jobs </p> </div> 
-            <div> <p onclick="sendToHelp()"> Help Page </p>  </div>
+            <div> <p> Contact us </p>  </div>
             <div id="jobpost">
                 <i class="fa-solid fa-briefcase"></i>
-                <p>Contact Us</p><br>
+                <p onclick="sendToHelp()"> Help Page </p><br>
             </div>
             <div><i class="fa-solid fa-message"></i></div>
-            <div> <i id="profile" class="fa-solid fa-user" onclick="sendToProfile()"></i> </div>
+            <div> <i id="profile" class="fa-solid fa-user"></i> </div>
         </div> 
+          
     </div>
     <script src="script.js"></script>
 </body>

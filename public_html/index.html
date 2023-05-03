@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">    
 </head>
 
-<body id="index_body">
+<body>
     <div id="header"> 
 
         <div>
@@ -25,14 +25,13 @@
         </div>
 
         <div id="info"> 
-           <div> <p> Services </p> </div> 
             <div> <p> Contact us </p>  </div>
             <div id="jobpost">
                 <i class="fa-solid fa-briefcase"></i>
-                <p>Post Jobs </p><br>
+                <p onclick="sendToHelp()"> Help Page </p><br>
             </div>
             <div><i class="fa-solid fa-message"></i></div>
-            <div> <i id="profile" class="fa-solid fa-user" onclick="sendToProfile()"></i> </div>
+            <div> <i id="profile" class="fa-solid fa-user"></i> </div>
         </div> 
           
     </div>
@@ -41,7 +40,7 @@
         <div id="desc">
             <h2> Create an account and fulfill all your job searching needs.</h2>
             <h2> Either youre applying for a job or posting your listing.</h2>
-            <h1>Grow with 'jobsite name'</h2>
+            <h1> Grow with 'jobsite name'</h2>
         </div>
 
         <div id="createAccount">
@@ -64,8 +63,9 @@
                         <input type="radio" id="choice2" name="userType" value="recruiter" required></span>
                     </div>
             </fieldset>
-            <output id ="create_p"></output>
-            <input type="submit" value="Create an account now!" id="addUser" class="inputButton" onclick="addUser()"><br>
+            <p id ="create_p"></p>
+            <div id="button"><input type="submit" value="Create an account now!" id="addUser" class="inputButton" onclick="addUser()"><br>
+            </div>
 
         </div>
 
@@ -76,8 +76,8 @@
             <input type="text" id="username_login" name="username_login"><br>
             <label for="password">Password</label>
             <input type="password" id="password_login" name="password_login"><br>
+            <p id ="login_p">Please enter your username and password.</p>
             <input type="submit" value="Login" id="use_login" class="inputButton" onclick="userLogin()"><br>
-            <output id ="login_p">Please enter your username and password.</output>
         </div>
     </div>
 

@@ -20,7 +20,6 @@ var Message = require('./module/MessageSchema');
 var CompanyProfile = require('./module/CompanyProfileSchema');
 
 let session = [];
-app.use('/help.html', authenticate); 
 app.use('/job_post.html', authenticate);
 app.use('/recruiter_profile.html', authenticate);
 app.use('/User_home.html', authenticate);

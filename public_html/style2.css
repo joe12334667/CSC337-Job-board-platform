@@ -9,11 +9,17 @@ body{
 }
 
 #header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    color: #8D99AE;
     display:flex;
     justify-content:space-between;
     align-items:center ;
     background-color: #3D405B;
-    height: 15vh;   
+    height: 13vh;   
     position: fixed;
     width:100%;
     z-index:100;
@@ -21,14 +27,14 @@ body{
 }
 
 #logo{
-    color:white;
+    color: #8D99AE;
     font-family: 'Dongle', sans-serif;
     font-size:60px;
     margin-left:6vw;
 }
 
 #info{
-    color:white;
+    color: #8D99AE;
     display: flex;
     align-items:center ;
     font-family: 'Abel';
