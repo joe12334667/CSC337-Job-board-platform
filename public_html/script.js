@@ -280,14 +280,24 @@ function searchJob() {
         })
         .then((text) => {
             displayPostings(text);
-            displayCompanies();
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
             console.log(error);
         });
+}
 
+function searchCompany(title) {
+    let url = '/search/company/' + title;
 
+    let p = fetch(url);
+    let ps = p.then( (results) => {
+      return results.json();
+    }).then((items) => { 
+        console.log(items)
+    }).catch(() => { 
+      alert('something went wrong');
+    });
 }
 
 function JobSearchUsedRecruiterUserId(RId){
@@ -334,6 +344,9 @@ function displayPostings(items) {
     }
 
     for (let i = 0; i < items.length; i++) {
+        //here is where i wanted to grab every company
+        searchCompany(items[i].title);
+        console.log(items[i].title);
         var salary = items[i].salary;
         formatString = '<div' + '">'
             + items[i].title.bold() + '<br/>'
