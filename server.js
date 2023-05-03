@@ -87,7 +87,7 @@ async function filterJob(req) {
     or = [];
     console.log(req.body);
 
-    if (req.body.title != "" && req.body.title != undefined) { } {
+    if (!req.body.title &&req.body.title != "" && req.body.title != undefined) { } {
         or.push({ title: new RegExp('\w*' + req.body.title.toLowerCase() + '\w*', "i") });
         or.push({ description: new RegExp('\w*' + req.body.title.toLowerCase() + '\w*', "i") });
     }
@@ -116,11 +116,7 @@ async function filterJob(req) {
         and.push({ "salary.currency": req.body.currency });
     }
     if (req.body.RecruiterUserId != undefined && req.body.RecruiterUserId != undefined) {
-        and.push({
-            postedBy: {
-                RecruiterUserId: req.body.RecruiterUserId
-            }
-        });
+        and.push({ 'postedBy.RecruiterUserId': req.body.RecruiterUserId });
     }
     if (req.body.RecruiterUserName != undefined && req.body.RecruiterUserName != undefined) {
         and.push({
@@ -201,13 +197,13 @@ async function startServer() {
 
     app.post('/add/job/', (req, res) => {
         var newJob = new Job({
-            title : req.body.title,
-            description : req.body.description,
-            company : req.body.company,
-            location : req.body.location,
-            employmentType : req.body.employmentType,
-            experienceLevel : req.body.experienceLevel,
-            educationLevel : req.body.educationLevel,
+            title: req.body.title,
+            description: req.body.description,
+            company: req.body.company,
+            location: req.body.location,
+            employmentType: req.body.employmentType,
+            experienceLevel: req.body.experienceLevel,
+            educationLevel: req.body.educationLevel,
         });
         newJob.save();
         res.end("saved job");
