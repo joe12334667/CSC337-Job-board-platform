@@ -206,3 +206,48 @@ select{
     color:white;
     cursor:pointer;
 }
+
+#job-post{
+    position:relative;
+    top:80px;
+    border:4px dashed #3D405B;
+    width:50%;
+    margin:auto;
+}
+
+
+.job-info{
+    font-family: 'Abel';
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom:15px;
+}
+
+
+.job-info input{
+    padding:7px;
+}
+
+.job-info button{
+    padding:8px 18px;
+    margin-top:10px;
+    font-family: 'Dongle';
+    font-size:23px;
+    font-weight:700;
+    background-color:#3D405B;
+    color:white;
+    border-radius: 5px;
+
+}
+
+#first-title{
+    font-family: 'Dongle';
+    text-align: center;
+    font-size: 40px;
+}
+
+
+
+
+
