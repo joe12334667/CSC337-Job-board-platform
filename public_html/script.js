@@ -194,6 +194,7 @@ function searchUsername(u) {
         alert('something went wrong');
     });
 }
+
 function searchJob() {
 
     var t = document.getElementById("title").value;
@@ -354,14 +355,13 @@ function applyJob(job) {
     fetch(URL + '/apply/job/' + userId + '/' + job.id + '/')
         .then((response) => { return response.text() })
         .then((text) => {
-             console.log(text) 
+             console.log(text); 
              alert(text);
             })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
             console.log(error);
         });
-    
 
 }
 
@@ -382,21 +382,63 @@ function getCookie() {
     return JSON.parse(parseCookie(document.cookie)['login'].slice(2,));
 }
 
-function sendToProfile() {
+function sendUToProfile() {
     //different profiles for seeker/recruiter?
     //send to user profile for now
-    window.location.href = "/profile.html";
+    window.location.href = "/User_profile.html";
 }
 
-function sendToJobs() {
-    //different profiles for seeker/recruiter?
-    //send to user profile for now
-    window.location.href = "/home.html";
+function sendRToProfile(){
+    window.location.href = "/recruiter_profile.html";
 }
 
-function sendToHelp() {
-    //different profiles for seeker/recruiter?
-    //send to user profile for now
-    window.location.href = "/help.html";
-}
+function addExperience(){
 
+    const experience= document.getElementById("experience-info");
+    const div= document.createElement("div");
+
+    const line=document.createElement("p");
+    line.innerHTML="------------------------------------";
+
+    const label1= document.createElement("label");
+    label1.innerHTML="Title";
+    const title= document.createElement("input");
+    title.id="title";
+
+    const label2= document.createElement("label");
+    label2.innerHTML="company";
+    const company= document.createElement("input");
+    company.id="company";
+
+    const label3= document.createElement("label");
+    label3.innerHTML="description";
+    const description= document.createElement("input");
+    description.id="description";
+
+    const label4= document.createElement("label");
+    label4.innerHTML="start Date";
+    const startdate= document.createElement("input");
+    startdate.id="startdate";
+
+    const label5= document.createElement("label");
+    label5.innerHTML="End Date";
+    const enddate= document.createElement("input");
+    startdate.id="enddate";
+
+
+    div.appendChild(line);
+    div.appendChild(label1);
+    div.appendChild(title);
+    div.appendChild(label2);
+    div.appendChild(company);
+    div.appendChild(label3);
+    div.appendChild(description);
+    div.appendChild(label4);
+    div.appendChild(startdate);
+    div.appendChild(label5);
+    div.appendChild(enddate);
+
+    div.id="experience-info";
+
+    experience.appendChild(div);
+}
