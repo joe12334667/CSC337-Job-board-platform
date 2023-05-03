@@ -279,8 +279,8 @@ function searchJob() {
             return response.json();
         })
         .then((text) => {
-            displayDiv(text);
-            //display companies 
+            displayPostings(text);
+            displayCompanies();
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
@@ -312,7 +312,7 @@ function JobSearchUsedRecruiterUserId(RId){
             return response.json();
         })
         .then((text) => {
-            displayDiv(text);
+            displayPostings(text);
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
@@ -321,7 +321,7 @@ function JobSearchUsedRecruiterUserId(RId){
 
 }
 
-function displayDiv(items) {
+function displayPostings(items) {
     let items_div = document.getElementById("displayContent");
 
     //clearing the display area
@@ -334,18 +334,18 @@ function displayDiv(items) {
     }
 
     for (let i = 0; i < items.length; i++) {
-        console.log(items[i])
+        var salary = items[i].salary;
         formatString = '<div' + '">'
             + items[i].title.bold() + '<br/>'
             + '<p> Job Description </p>'
             + items[i].description + '<br/>'
             + '' + '<br/>'
             + 'Company: ' + items[i].company + '<br/>'
-            + 'Field location: ' + items[i].location + '</div>\n' + '<br/>';
-        // employmentType: String,  // ('Full-time', 'Part-time', 'Contract', etc.)
-        // experienceLevel: String, // ('Entry-level', 'Mid-level', 'Senior-level', etc.)
-        // educationLevel: String
-        // salary
+            + 'Field location: ' + items[i].location + '</div>\n' + '<br/>'
+            + 'Job type: ' + items[i].employmentType  + '</div>\n' + '<br/>'
+            + '<p> Salary Information </p>'
+            + "Salary type: " + salary.JobType + '<br/>' + " Starting salary: " + salary.amount + '<br/>' + " Currency type: " + salary.currency + '<br/>'
+            + '<p> Date Posted: </p>' + items[i].createdAt + '</div>\n' + '<br/>';
 
         //styling the new div
         let div = document.createElement("div");
@@ -360,7 +360,6 @@ function displayDiv(items) {
             applyJob(button);
         };
         div.appendChild(button);
-
 
         items_div.appendChild(div);
     }

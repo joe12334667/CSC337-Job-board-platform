@@ -189,16 +189,30 @@ select{
 
 /* displaying the postings */
 #posting {
+    position: relative;
+    width: 40%;
     color: #8D99AE;
     font-family: Abel;
     font-size: 1.5em;
     margin: 3em;
     float: left;
-    width: 40%;
+    left: 0;
     border: dashed 2px rgb(29, 29, 83);
     text-align: center;
 }
 
+#test {
+    position: relative;
+    width: 40%;
+    color: #8D99AE;
+    font-family: Abel;
+    font-size: 1.5em;
+    margin: 3em;
+    float: right;
+    left: 0;
+    border: dashed 2px rgb(29, 29, 83);
+    text-align: center;
+}
 #posting p {
     margin-bottom: 0px;
 }
