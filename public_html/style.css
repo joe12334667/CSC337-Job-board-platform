@@ -211,4 +211,19 @@ fieldset {
     color: #8D99AE;
 }
 
-/* recruiter section */
+/* help section */
+
+.help_content{
+    position: absolute;
+    font-family: 'Abel';
+    font-weight: bolder;    
+    top: 13vh;
+    left:0;
+    right:0;
+    background-color: #cdd7dc;
+}
+
+#help {
+    text-align: center;
+    color: #8D99AE;
+}
