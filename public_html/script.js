@@ -272,6 +272,37 @@ function searchJob() {
 
 }
 
+function JobSearchUsedRecruiterUserId(RId){
+    let url = URL + '/search/job/';
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            title: "",
+            company: "",
+            description: "",
+            location: "",
+            date: "",
+            amount: "",
+            employmentType: "",
+            RecruiterUserId : RId
+        }),
+        headers: {
+            'Content-type': 'application/json',
+        }
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((text) => {
+            displayDiv(text);
+        })
+        .catch((error) => {
+            console.log('THERE WAS A PROBLEM');
+            console.log(error);
+        });
+
+}
+
 function displayDiv(items) {
     let items_div = document.getElementById("displayContent");
 
