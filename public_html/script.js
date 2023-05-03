@@ -263,6 +263,7 @@ function searchJob() {
         })
         .then((text) => {
             displayDiv(text);
+            //display companies 
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
@@ -354,5 +355,17 @@ function sendToProfile() {
     //different profiles for seeker/recruiter?
     //send to user profile for now
     window.location.href = "/profile.html";
+}
+
+function sendToJobs() {
+    //different profiles for seeker/recruiter?
+    //send to user profile for now
+    window.location.href = "/home.html";
+}
+
+function sendToHelp() {
+    //different profiles for seeker/recruiter?
+    //send to user profile for now
+    window.location.href = "/help.html";
 }
 

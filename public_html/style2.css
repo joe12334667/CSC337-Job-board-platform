@@ -61,8 +61,6 @@ body{
     margin-right:30px;
 }
 
-
-
 #search-butt{
     display:inline;
     border: 1px solid black;
@@ -176,6 +174,7 @@ select{
     padding-top: 15px 0px;
 }
 
+/* displaying the postings */
 #posting {
     color: #8D99AE;
     font-family: Abel;
@@ -189,4 +188,17 @@ select{
 
 #posting p {
     margin-bottom: 0px;
+}
+
+.line {
+    display:flex;
+    height: 2px;
+    margin-bottom: 15px;
+    background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 5px,
+      black 10px,
+      black 20px
+    );
 }

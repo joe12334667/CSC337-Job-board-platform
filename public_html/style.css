@@ -1,5 +1,4 @@
 /* 
-CSC 337 CHIU YEH CHEN
 this file contains the css needed for the index.html.
 */
 
@@ -14,7 +13,7 @@ this file contains the css needed for the index.html.
 
 /* Index page heder */
 #header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -90,29 +89,56 @@ this file contains the css needed for the index.html.
     background-color: #d8e0e37a;
     border: solid 1px #d8e0e3c0;
     box-shadow: 10px 10px #d8e0e3d9;
+    align-items: center;
 }
 
-#index_content h1 {
+#createAccount h1 {
     display:flex;
     text-align: center;
     justify-content: center;
 }
 
-#index_content label {
+#createAccount label {
     display: inline-block; 
     margin-top: 5px;
     margin-left: 3vh;
+    font-size: large;
     width: 100px; 
     text-align: right;
+}
+
+#createAccount legend {
+    font-size: larger;
+}
+
+#logIn h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #d8e0e3c0;
+}
+
+#logIn label {
+    display: inline-block; 
+    margin-top: 5px;
+    margin-left: 3vh;
+    font-size: large;
+    width: 100px; 
+    text-align: right;
+}
+
+#logIn output {
+    text-align: center;
 }
 
 .inputButton {
     position: absolute;
     bottom:   0;
-    right: 50%;
-    display: flex;
-    float:inline-end;
-    margin: 0 auto;
+
+    text-align: center;
+    height:5vh;
+    width:40vh;
+    font-size: large;
 }
 
 fieldset {
