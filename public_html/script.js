@@ -194,6 +194,7 @@ function searchUsername(u) {
         alert('something went wrong');
     });
 }
+
 function searchJob() {
 
     var t = document.getElementById("title").value;
