@@ -356,3 +356,46 @@ function sendToProfile() {
     window.location.href = "/profile.html";
 }
 
+function addExperience(){
+
+    const experience= document.getElementById("experience-info");
+    const div= document.createElement("div");
+
+    const line=document.createElement("p");
+    line.innerHTML="------------------------------------"
+    const label1= document.createElement("label");
+    label1.innerHTML="Title";
+    const title= document.createElement("input");
+    const label2= document.createElement("label");
+    label2.innerHTML="company";
+    const company= document.createElement("input");
+    const label3= document.createElement("label");
+    label3.innerHTML="description";
+    const description= document.createElement("input");
+    const label4= document.createElement("label");
+    label4.innerHTML="start Date";
+    const startdate= document.createElement("input");
+    const label5= document.createElement("label");
+    label5.innerHTML="End Date";
+    const enddate= document.createElement("input");
+
+    div.appendChild(line);
+    div.appendChild(label1);
+    div.appendChild(title);
+    div.appendChild(label2);
+    div.appendChild(company);
+    div.appendChild(label3);
+    div.appendChild(description);
+    div.appendChild(label4);
+    div.appendChild(startdate);
+    div.appendChild(label5);
+    div.appendChild(enddate);
+
+    div.id="experience-info";
+
+    experience.appendChild(div);
+
+
+
+
+}
