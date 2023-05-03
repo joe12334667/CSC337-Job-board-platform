@@ -218,13 +218,13 @@ function searchJob() {
     var a = document.getElementById("salary").value;
     var d = document.getElementById("date").value;
 
-    if (d == "24h") {
+    if (d == "Past 24h") {
         d = new Date();
         d.setDate(d.getDate() - 1);
-    } else if (d == "week") {
+    } else if (d == "Past week") {
         d = new Date();
         d.setDate(d.getDate() - 7);
-    } else if (d == "month") {
+    } else if (d == "Past month") {
         d = new Date();
         d.setDate(d.getDate() - 30);
     } else if (d == "Anytime") {
