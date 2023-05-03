@@ -6,8 +6,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Ostaa</title>
-    <link id="cssFile" rel="stylesheet" type="text/css" href="style.css">
+    <title>Home</title>
+    <link id="cssFile" rel="stylesheet" type="text/css" href="style2.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- icons -->
     <script src="https://kit.fontawesome.com/0654b390cc.js" crossorigin="anonymous"></script>
@@ -47,32 +47,41 @@
         </div>
 
         <div id="info"> 
-           <div> <p> Services </p> </div> 
-            <div> <p> Contact us </p>  </div>
             <div id="jobpost">
                 <i class="fa-solid fa-briefcase"></i>
                 <p>Post Jobs </p><br>
             </div>
-            <div><i class="fa-solid fa-message"></i></div>
-            <div> <i id="profile" class="fa-solid fa-user" onclick="sendToProfile()"></i> </div>
-        </div>       
+            <div>
+             <i id="profile" class="fa-solid fa-user" onclick="sendToProfile()"></i> </div>
+        </div> 
     </div>
 
-    <div class="index_content">
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title"><br>
+    <div id="job-post">
 
-        <label for="description">Description</label>
-        <input type="text" id="description" name="description"><br>
+        <p id="first-title"> Add the job information </p>
+        
+        <div class="job-info">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"><br>    
+        </div>
 
-        <label for="company">Company name</label>
-        <input type="text" id="company" name="company"><br>
+        <div class="job-info">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br>
+        </div>
 
-        <label for="location">location</label>
-        <input type="text" id="location" name="location"><br>
+        <div class="job-info">
+            <label for="company">Company name:</label>
+            <input type="text" id="company" name="company"><br>
+        </div>
 
-        <fieldset>
-            <legend>Employment type</legend>
+        <div class="job-info">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location"><br>
+        </div>
+
+        <div class="job-info">
+            <legend>Employment type:</legend>
                 <div>
                     <label for="fullTime">Full-time</label>
                     <span><input type="radio" name="employment" value="Full-time" required></span>
@@ -81,12 +90,11 @@
                     <span><label for="contract">Contract</label>
                     <input type="radio" name="employment" value="Contract" required></span>
                 </div>
-        </fieldset>
+        </div>
 
-        <fieldset>
-            <legend>Experience level</legend>
+        <div class="job-info">
+                <legend>Experience level:</legend>
                 <div>
-                    <div>
                         <label for="entryLevel">Entry-level</label>
                         <span><input type="radio" name="experience" value="Entry-level" required></span>
                         <span><label for="midLevel">Mid-level</label>
@@ -94,10 +102,10 @@
                         <span><label for="seniorLevel">Senior-level</label>
                         <input type="radio" name="experience" value="Senior-level" required></span>
                 </div>
-        </fieldset>
+        </div>
 
-        <fieldset>
-            <legend>Education level</legend>
+        <div class="job-info">
+                <legend>Education level:</legend>
                 <div>
                     <label for="highSchool">High School</label>
                     <span><input type="radio" name="education" value="High School" required></span>
@@ -106,8 +114,14 @@
                     <span><label for="masters">Master's Degree</label>
                     <input type="radio" name="education" value="Master's Degree" required></span>
                 </div>
-        </fieldset>
+        </div>
+
+        <div class="job-info">
+            <button type="submit"> Submit </button>
+        </div>
+
     </div>
+
     <script>
         const btn = document.querySelector('#btn');        
         const radioButtons = document.querySelectorAll('input[name="employment"]');

@@ -1,9 +1,11 @@
 /* used for home page and profile */
 
+
 body{
-    margin: 0;
+    margin:0;
     box-sizing: border-box; 
     background-color:#e2eef4;
+    height:100%;
 }
 
 #header{
@@ -12,8 +14,11 @@ body{
     align-items:center ;
     background-color: #3D405B;
     height: 15vh;   
-    position: relative;
-    }
+    position: fixed;
+    width:100%;
+    z-index:100;
+    cursor:pointer;
+}
 
 #logo{
     color:white;
@@ -45,11 +50,9 @@ body{
     margin-right:4px;
 }
 
-
 #search{
     padding-left:10vw;
-    padding-top:15vh;
-
+    padding-top:28vh;
 }
 
 #search input{
@@ -115,13 +118,13 @@ select{
 
 #left-info{
     width:24%;
-    float:left;
     display: flex;
     height:100%;
     position: fixed;
     flex-direction: column;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
+    padding-top:65px;
+    cursor:pointer;
 }
 
 .tab{
@@ -142,6 +145,9 @@ select{
 #profile-info{
     text-align: center;
     font-family: 'Lato', sans-serif;
+    float:left;
+    width:100%;
+    padding-top:65px;
 }   
 
 
@@ -164,6 +170,7 @@ select{
     padding:20px 0px;
     box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 }
+
 .profile-section input{
     padding-left:5px;
     width:20vw;
@@ -190,15 +197,56 @@ select{
     margin-bottom: 0px;
 }
 
-.line {
-    display:flex;
-    height: 2px;
-    margin-bottom: 15px;
-    background: repeating-linear-gradient(
-      to right,
-      transparent,
-      transparent 5px,
-      black 10px,
-      black 20px
-    );
+#buttons button{
+    padding:8px 25px;
+    margin-left:20px;
+    margin-top:20px;
+    background-color: #3D405B;
+    color:white;
+    cursor:pointer;
 }
+
+#job-post{
+    position:relative;
+    top:80px;
+    border:4px dashed #3D405B;
+    width:50%;
+    margin:auto;
+}
+
+
+.job-info{
+    font-family: 'Abel';
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom:15px;
+}
+
+
+.job-info input{
+    padding:7px;
+}
+
+.job-info button{
+    padding:8px 18px;
+    margin-top:10px;
+    font-family: 'Dongle';
+    font-size:23px;
+    font-weight:700;
+    background-color:#3D405B;
+    color:white;
+    border-radius: 5px;
+
+}
+
+#first-title{
+    font-family: 'Dongle';
+    text-align: center;
+    font-size: 40px;
+}
+
+
+
+
+
