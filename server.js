@@ -20,7 +20,11 @@ var Message = require('./module/MessageSchema');
 var CompanyProfile = require('./module/CompanyProfileSchema');
 
 let session = [];
-app.use('/home.html/', authenticate);
+app.use('/help.html', authenticate); 
+app.use('/job_post.html', authenticate);
+app.use('/recruiter_profile.html', authenticate);
+app.use('/User_home.html', authenticate);
+app.use('/User_profile.html', authenticate);
 
 
 // add given user to session.
