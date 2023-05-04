@@ -199,7 +199,7 @@ async function startServer() {
         });
     });
 
-    app.post('/add/job/', (req, res) => {
+    app.post('/add/posting/', (req, res) => {
         var newJob = new Job({
             title: req.body.title,
             description: req.body.description,

@@ -291,15 +291,15 @@ function searchJob() {
 }
 
 function searchCompany(title) {
-    let url = '/search/company/' + title;
+    let url = '/search/company/' + title + '/';
 
     let p = fetch(url);
     let ps = p.then( (results) => {
-      return results.json();
+      return results.text();
     }).then((items) => { 
-        console.log(items);
-        displayCompanies(items);
-    }).catch(() => { 
+        console.log(items)
+    }).catch((err) => { 
+        console.log(err);
       alert('something went wrong');
     });
 }
