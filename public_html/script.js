@@ -177,6 +177,10 @@ function addPosting() {
             employmentType: employment,
             experienceLevel: experience,
             educationLevel: education,
+            postedBy : {
+                RecruiterUserId : getCookie().u_Id,
+                RecruiterUserName : getCookie().username,
+            },
         }),
         headers: {
             'Content-type': 'application/json',
@@ -538,6 +542,7 @@ function displayPostedJobs(items) {
 
         items_div.appendChild(div);
     }
+}
     
 function displayAppliedJobs(){
 
