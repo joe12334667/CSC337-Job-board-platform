@@ -58,8 +58,8 @@
                 <input type="file" id="resume" name="filename">
 
                 <div id="buttons">
-                    <button type="submit" id="save-button">Save</button>
-                    <button type="submit" id="edit-button">Edit</button>    
+                    <button type="submit" id="save-button" onclick="save1()">Save</button>
+                    <button type="submit" id="edit-button" onclick="edit()">Edit</button>    
                 </div>
             </div>
 
@@ -68,17 +68,15 @@
                 <h2>Personal Information</h2>
 
                 <label for="fname">First Name</label>
-                <input id="name" placeholder="First name" required>
+                <input id="fname" placeholder="First name" required>
                 <label for="lname">Last Name</label>
                 <input id="lname" placeholder="Last name" required>
-                <label for="phone">Phone number</label>
-                <input id="phone" placeholder="Phone number" required>
                 <label for ="about">Description</label>
                 <input id="about" placeholder="Write a brief introduction about yourself">
 
                 <div id="buttons">
-                    <button type="submit" id="save-button">Save</button>
-                    <button type="submit" id="edit-button">Edit</button>    
+                    <button type="submit" id="save-button" onclick="save2()">Save</button>
+                    <button type="submit" id="edit-button" onclick="edit()">Edit</button>    
                 </div>
             </div>
           
@@ -92,8 +90,8 @@
                     <input id="city" placeholder="City">
 
                     <div id="buttons">
-                        <button type="submit" id="save-button">Save</button>
-                        <button type="submit" id="edit-button">Edit</button>    
+                        <button type="submit" id="save-button" onclick="save3()">Save</button>
+                        <button type="submit" id="edit-button" onclick="edit()">Edit</button>    
                     </div>    
             </div>
             
@@ -101,8 +99,8 @@
                 <h2>Education </h2> <p>(Optional)</p>
                 <p>This helps recruiters see your academic achievements</p>
                 <br>
-                <label for="instituation">Institution</label>
-                <input id="instituation" placeholder="College, University... ">
+                <label for="institution">Institution</label>
+                <input id="institution" placeholder="College, University... ">
                 <br>
                 <label for="degree">Degree</label>
                 <input id="degree" placeholder="Bachelor, Masters...">
@@ -117,8 +115,8 @@
                 <input id="end" type="date">
 
                 <div id="buttons">
-                    <button type="submit" id="save-button">Save</button>
-                    <button type="submit" id="edit-button">Edit</button>    
+                    <button type="submit" id="save-button" onclick="save4()">Save</button>
+                    <button type="submit" id="edit-button" onclick="edit()">Edit</button>    
                 </div>
 
             </div>
@@ -127,17 +125,17 @@
                 <h2>Links </h2>
                 <p> link any of your profiles </p>
                 <br>
-                <input class="profile" placeholder="Linkedin, Github...">
+                <input class="profile" id="linkedin" placeholder="Linkedin, Github...">
                 <br>
 
-                <input class="profile" placeholder="Portfolio, Website...">
+                <input class="profile" id="website" placeholder="Portfolio, Website...">
                 <br>
 
-                <input class="profile" placeholder="Others">
+                <input class="profile" id="portfolio" placeholder="Others">
 
                 <div id="buttons">
-                    <button type="submit" id="save-button">Save</button>
-                    <button type="submit" id="edit-button">Edit</button>    
+                    <button type="submit" id="save-button" onclick="save5()">Save</button>
+                    <button type="submit" id="edit-button" onclick="edit()">Edit</button>    
                 </div>
 
 
