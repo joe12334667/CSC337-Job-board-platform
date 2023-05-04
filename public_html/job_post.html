@@ -17,30 +17,6 @@
 </head>
 
 <body id="index_body">
-    <!-- title: String,
-    description: String,
-    company: String,
-    location: String,
-    employmentType: String,  // ('Full-time', 'Part-time', 'Contract', etc.)
-    experienceLevel: String, // ('Entry-level', 'Mid-level', 'Senior-level', etc.)
-    educationLevel: String, // ('High School', 'Bachelor's Degree','Master's Degree', etc.)
-    salary: {
-        type: String,
-        amount: Number,
-        currency: String,
-    },
-    postedBy: {
-        RecruiterUserId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // (ID of the recruiter who posted the job listing)
-        username: String,
-    },
-    Applicants: [{
-        UserID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        Review: String,
-        Rating: Number,
-        TimePosted: Date
-    }],
-    createdAt: Date,
-    updatedAt: Date, -->
     <div id="header"> 
         <div>
             <h1 id="logo"> Job Board </h1>
@@ -49,7 +25,7 @@
         <div id="info"> 
             <div id="jobpost">
                 <i class="fa-solid fa-briefcase"></i>
-                <p>Post Jobs </p><br>
+                <p onclick="sendToPostings()">Post Jobs </p><br>
             </div>
             <div>
              <i id="profile" class="fa-solid fa-user" onclick="sendRToProfile()"></i> </div>
@@ -134,7 +110,7 @@
                 }
             }
             // show the output:
-            output.innerText = selectedSize ? `You selected ${selectedSize}` : `You haven't selected any size`;
+            output.innerText = selectedSize ? `You selected ${selectedSize}` : `You haven't selected any options`;
         });
     </script>
     <script src="script.js"></script>

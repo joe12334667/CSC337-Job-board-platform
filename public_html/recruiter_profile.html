@@ -24,7 +24,7 @@
         <div id="info"> 
             <div id="jobpost">
                 <i class="fa-solid fa-briefcase"></i>
-                <p>Post Jobs </p><br>
+                <p onclick="sendToPostings()">Post Jobs </p><br>
             </div>
             <div>
                  <i id="profile" class="fa-solid fa-user" onclick="sendRToProfile()"></i> </div>
@@ -36,15 +36,15 @@
 
         <div class="tab">
             <i class="fa-solid fa-bars"></i>
-            <p>Information</p>
+            <p onclick="sendRToProfile()">Information</p>
         </div>
         <div class="tab">
             <i class="fa-solid fa-briefcase"></i>
-            <p>Posted jobs</p>
+            <p onclick="displayPostedJobs()">Posted jobs</p>
         </div>
         <div class="tab">
             <i class="fa-solid fa-laptop-file"></i>            
-            <p>Applications</p>
+            <p onclick="displayApplications()">Applications</p>
         </div>
 
     </div>

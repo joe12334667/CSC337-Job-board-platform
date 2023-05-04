@@ -186,7 +186,8 @@ async function startServer() {
                     var newUser = new User({
                         username: req.body.username,
                         hash: hs,
-                        email: req.body.email
+                        email: req.body.email,
+                        accountType: req.body.accountType
                     });
                     newUser.save();
                     res.end("saved user");
@@ -198,7 +199,7 @@ async function startServer() {
         });
     });
 
-    app.post('/add/job/', (req, res) => {
+    app.post('/add/posting/', (req, res) => {
         var newJob = new Job({
             title: req.body.title,
             description: req.body.description,
