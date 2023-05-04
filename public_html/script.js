@@ -587,7 +587,7 @@ function displayAppliedJobs(){
 
     userId = getCookie().u_Id;
 
-    let url="/display/jobs/" + localStorage.getItem("selectedUser");
+    let url="/search/user/job/" + userId + "/";
     let p=fetch(url);
 
     p.then((response)=>{
@@ -603,7 +603,7 @@ function displayAppliedJobs(){
 
         }
 
-        else{se
+        else{
 
                 let section=document.getElementById("profile-info");
                 section.innerHTML="";
