@@ -384,6 +384,65 @@ async function startServer() {
     });
 
 
+    app.post("/save2/data",(req,res)=>{
+
+        var user = new User({
+            profile :{
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                about: req.body.about,
+            }
+        });
+        user.save();
+        res.end("saved");
+    });
+
+
+    app.post("/save3/data",(req,res)=>{
+
+        var user = new User({
+            profile :{
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                about: req.body.about,
+            }
+        });
+        user.save();
+        res.end("saved job");
+    });
+
+
+    app.post("/save4/data",(req,res)=>{
+
+        var user = new User({
+            education: {
+                institution: req.body.institution,
+                degree: req.body.degree,
+                fieldOfStudy: req.body.field,
+                startDate:req.body.start,
+                endDate:req.body.end
+            }
+        });
+        user.save();
+        res.end("saved job");
+    });
+
+
+
+    app.post("/save5/data",(req,res)=>{
+
+        var user = new User({
+            links: {
+                website: req.body.website,
+                linkedin: req.body.linkedin,
+                portfolio: req.body.portfolio,
+            }
+        });
+        user.save();
+        res.end("saved job");
+    });
+
+
 
     // .then((and) => {
     //     console.log(and);

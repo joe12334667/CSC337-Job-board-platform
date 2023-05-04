@@ -538,6 +538,7 @@ function displayPostedJobs(items) {
 
         items_div.appendChild(div);
     }
+}
     
 function displayAppliedJobs(){
 
@@ -560,14 +561,15 @@ function displayAppliedJobs(){
 
         }
 
-        else{
-
-            for (i in data){
+        else{se
 
                 let section=document.getElementById("profile-info");
                 section.innerHTML="";
 
+
+            for (i in data){
                 let div= document.createElement("div");
+
 
                 let title= document.createElement("div");
                 title.innerHTML=data[i].title;
@@ -610,6 +612,122 @@ function displayAppliedJobs(){
     }).catch((error) => {
         console.log('THERE WAS A PROBLEM');
         console.log(error);
+    });
+
+}
+
+
+
+function save2(){
+
+    let fname=document.getElementById("fname").value;
+    let lname=document.getElementById("lname").value;
+    let about=document.getElementById("about").value;
+
+    const data ={ firstname:fname,lastname:lname,about:about };
+
+    let url="/save2/data/";
+
+    let p = fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+        headers: {"Content-Type": "application/json"}
+    });
+
+
+    p.then((response)=>{
+        return response.text;
+    });
+
+    p.then((data)=>{
+        if(data=="saved")
+        alert("Saved");
+    });
+
+}
+
+
+function save3(){
+
+    let country=document.getElementById("country").value;
+    let city=document.getElementById("city").value;
+
+    const data ={country:country,city:city};
+
+    let url="/save3/data/";
+
+    let p = fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+        headers: {"Content-Type": "application/json"}
+    });
+
+
+    p.then((response)=>{
+        return response.text;
+    });
+
+    p.then((data)=>{
+        if(data=="saved")
+        alert("Saved");
+    });
+
+}
+
+function save4(){
+
+    let instituation=document.getElementById("instituation").value;
+    let degree=document.getElementById("degree").value;
+    let field=document.getElementById("field").value;
+    let start=document.getElementById("start").value;
+    let end=document.getElementById("start").value;
+
+    const data ={instituation:instituation,degree:degree,field:field,start:start,end:end};
+    
+    let url="/save4/data/";
+
+    let p = fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+        headers: {"Content-Type": "application/json"}
+    });
+
+
+    p.then((response)=>{
+        return response.text;
+    });
+
+    p.then((data)=>{
+        if(data=="saved")
+        alert("Saved");
+    });
+
+}
+
+function save5(){
+
+    let website=document.getElementById("website").value;
+    let linkedin=document.getElementById("linkedin").value;
+    let portfolio=document.getElementById("portfolio").value;
+
+    const data ={website:website,linkedin:linkedin,portfolio:portfolio};
+    
+    let url="/save5/data/";
+
+    let p = fetch(url, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+        headers: {"Content-Type": "application/json"}
+    });
+
+
+    p.then((response)=>{
+        return response.text;
+    });
+
+    p.then((data)=>{
+        if(data=="saved")
+        alert("Saved");
     });
 
 }
