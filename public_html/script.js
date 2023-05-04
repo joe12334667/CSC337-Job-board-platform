@@ -290,14 +290,17 @@ function searchJob() {
         });
 }
 
-function searchCompany(title) {
-    let url = '/search/company/' + title + '/';
+function searchCompany() {
+    var n = document.getElementById("title").value;
+
+    let url = '/search/company/' + n + '/';
 
     let p = fetch(url);
     let ps = p.then( (results) => {
       return results.text();
     }).then((items) => { 
-        console.log(items)
+        console.log(items);
+        // displayCompanies(items);
     }).catch((err) => { 
         console.log(err);
       alert('something went wrong');
@@ -387,6 +390,10 @@ function sendToPostings() {
     window.location.href = "/job_post.html";
 }
 
+function sendToCompanies() {
+    window.location.href = "/companies.html";
+}
+
 function addExperience() {
     const experience= document.getElementById("experience-info");
     const div= document.createElement("div");
@@ -440,7 +447,8 @@ function addExperience() {
 
 function displayPostings(items) {
     let items_div = document.getElementById("displayContent");
-
+    companies = [];
+    
     //clearing the display area
     while (items_div.firstChild) {
         items_div.removeChild(items_div.firstChild);
@@ -453,7 +461,7 @@ function displayPostings(items) {
     for (let i = 0; i < items.length; i++) {
         //here is where i wanted to grab every company
         // searchCompany(items[i].company);
-        console.log(items[i].title);
+        companies.push(items[i].company);
         var salary = items[i].salary;
         formatString = '<div' + '">'
             + items[i].title.bold() + '<br/>'
@@ -485,14 +493,50 @@ function displayPostings(items) {
     }
 }
 
-function postedJobs() {
+function displayCompanies(items) {
+    let items_div = document.getElementById("displayContent");
+    
+    //clearing the display area
+    while (items_div.firstChild) {
+        items_div.removeChild(items_div.firstChild);
+    }
+
+    if (items.length == 0) {
+        items_div.innerHTML = 'No job results found. Try redefining your search terms';
+    }
+
+    for (let i = 0; i < items.length; i++) {
+        //here is where i wanted to grab every company
+        formatString = '<div' + '">'
+            + items[i].name.bold() + '<br/>';
+
+        //styling the new div
+        let div = document.createElement("div");
+        div.setAttribute('id', 'test');
+        div.innerHTML = formatString;
+
+        // add apply button
+        let button = document.createElement('button');
+        button.textContent = 'Apply';
+        button.id = items[i]['_id'];
+        button.onclick = () => {
+            applyJob(button);
+        };
+        div.appendChild(button);
+
+        items_div.appendChild(div);
+    }
+}
+
+ function postedJobs() {
     var url = '/search/users/' + localStorage.getItem("selectedUser");
 
     let p = fetch(url);
     let ps = p.then((results) => {
         return results.json();
     }).then((items) => {
-        displayPostedJobs(items);
+        console.log(items);
+        // displayPostedJobs(items);
     }).catch(() => {
         alert('something went wrong');
     });
@@ -517,7 +561,6 @@ function displayPostedJobs(items) {
     }
 
     for (let i = 0; i < items.length; i++) {
-        //here is where i wanted to grab every company
         formatString = '<div' + '">'
             + items[i].postedJobs + '<br/>'
 
