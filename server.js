@@ -24,6 +24,7 @@ app.use('/job_post.html', authenticate);
 app.use('/recruiter_profile.html', authenticate);
 app.use('/User_home.html', authenticate);
 app.use('/User_profile.html', authenticate);
+app.use('/companies.html' , authenticate);
 
 
 // add given user to session.

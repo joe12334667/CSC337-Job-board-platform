@@ -49,19 +49,19 @@ function addUser() {
 
     //add recruiter/seeker and email
 
-    if(u == undefined) {
+    if (u == undefined) {
         document.getElementById("create_p").innerHTML = "Must enter a username.";
-    }else if (p == undefined) {
+    } else if (p == undefined) {
         document.getElementById("create_p").innerHTML = "Must enter a password. It's recommended you choose a strong password for your new account";
-    }else if (e == undefined) {
+    } else if (e == undefined) {
         document.getElementById("create_p").innerHTML = "Must enter an email.";
-    }else if (userType == undefined) {
+    } else if (userType == undefined) {
         document.getElementById("create_p").innerHTML = "Must state what user experience you are looking for.";
-    }else {
-        if(!e.includes("@")) 
+    } else {
+        if (!e.includes("@"))
             document.getElementById("create_p").innerHTML = "Enter a valid email address.";
         else {
-            let url =  URL + '/add/user/';
+            let url = URL + '/add/user/';
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({
@@ -79,7 +79,7 @@ function addUser() {
                 })
                 .then((results) => {
                     console.log(results);
-                    if(results == 'taken') {
+                    if (results == 'taken') {
                         document.getElementById("create_p").innerHTML = 'That username is taken. Please choose another.';
                     } else {
                         document.getElementById("create_p").innerHTML = 'Account created! Log in to start yopur job looking needs.';
@@ -177,9 +177,9 @@ function addPosting() {
             employmentType: employment,
             experienceLevel: experience,
             educationLevel: education,
-            postedBy : {
-                RecruiterUserId : getCookie().u_Id,
-                RecruiterUserName : getCookie().username,
+            postedBy: {
+                RecruiterUserId: getCookie().u_Id,
+                RecruiterUserName: getCookie().username,
             },
         }),
         headers: {
@@ -280,7 +280,7 @@ function searchJob() {
 function searchCompany() {
     var n = document.getElementById("title").value;
 
-    let url = URL + '/search/company/' +n +  '/';
+    let url = URL + '/search/company/' + n + '/';
     fetch(url)
         .then((response) => {
             return response.json();
@@ -292,10 +292,10 @@ function searchCompany() {
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
             console.log(error);
-    });
+        });
 }
 
-function JobSearchUsedRecruiterUserId(RId){
+function JobSearchUsedRecruiterUserId(RId) {
     let url = URL + '/search/job/';
     fetch(url, {
         method: 'POST',
@@ -307,7 +307,7 @@ function JobSearchUsedRecruiterUserId(RId){
             date: "",
             amount: "",
             employmentType: "",
-            RecruiterUserId : RId
+            RecruiterUserId: RId
         }),
         headers: {
             'Content-type': 'application/json',
@@ -332,9 +332,9 @@ function applyJob(job) {
     fetch(URL + '/apply/job/' + userId + '/' + job.id + '/')
         .then((response) => { return response.text() })
         .then((text) => {
-             console.log(text); 
-             alert(text);
-            })
+            console.log(text);
+            alert(text);
+        })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
             console.log(error);
@@ -384,36 +384,36 @@ function sendToCompanies() {
 }
 
 function addExperience() {
-    const experience= document.getElementById("experience-info");
-    const div= document.createElement("div");
+    const experience = document.getElementById("experience-info");
+    const div = document.createElement("div");
 
-    const line=document.createElement("p");
-    line.innerHTML="------------------------------------";
+    const line = document.createElement("p");
+    line.innerHTML = "------------------------------------";
 
-    const label1= document.createElement("label");
-    label1.innerHTML="Title";
-    const title= document.createElement("input");
-    title.id="title";
+    const label1 = document.createElement("label");
+    label1.innerHTML = "Title";
+    const title = document.createElement("input");
+    title.id = "title";
 
-    const label2= document.createElement("label");
-    label2.innerHTML="company";
-    const company= document.createElement("input");
-    company.id="company";
+    const label2 = document.createElement("label");
+    label2.innerHTML = "company";
+    const company = document.createElement("input");
+    company.id = "company";
 
-    const label3= document.createElement("label");
-    label3.innerHTML="description";
-    const description= document.createElement("input");
-    description.id="description";
+    const label3 = document.createElement("label");
+    label3.innerHTML = "description";
+    const description = document.createElement("input");
+    description.id = "description";
 
-    const label4= document.createElement("label");
-    label4.innerHTML="start Date";
-    const startdate= document.createElement("input");
-    startdate.id="startdate";
+    const label4 = document.createElement("label");
+    label4.innerHTML = "start Date";
+    const startdate = document.createElement("input");
+    startdate.id = "startdate";
 
-    const label5= document.createElement("label");
-    label5.innerHTML="End Date";
-    const enddate= document.createElement("input");
-    startdate.id="enddate";
+    const label5 = document.createElement("label");
+    label5.innerHTML = "End Date";
+    const enddate = document.createElement("input");
+    startdate.id = "enddate";
 
 
     div.appendChild(line);
@@ -428,7 +428,7 @@ function addExperience() {
     div.appendChild(label5);
     div.appendChild(enddate);
 
-    div.id="experience-info";
+    div.id = "experience-info";
 
     experience.appendChild(div);
 }
@@ -437,7 +437,7 @@ function addExperience() {
 function displayPostings(items) {
     let items_div = document.getElementById("displayContent");
     companies = [];
-    
+
     //clearing the display area
     while (items_div.firstChild) {
         items_div.removeChild(items_div.firstChild);
@@ -459,7 +459,7 @@ function displayPostings(items) {
             + '' + '<br/>'
             + 'Company: ' + items[i].company + '<br/>'
             + 'Field location: ' + items[i].location + '</div>\n' + '<br/>'
-            + 'Job type: ' + items[i].employmentType  + '</div>\n' + '<br/>'
+            + 'Job type: ' + items[i].employmentType + '</div>\n' + '<br/>'
             + '<p> Salary Information </p>'
             + "Salary type: " + salary.JobType + '<br/>' + " Starting salary: " + salary.amount + '<br/>' + " Currency type: " + salary.currency + '<br/>'
             + '<p> Date Posted: </p>' + items[i].createdAt + '</div>\n' + '<br/>';
@@ -484,7 +484,7 @@ function displayPostings(items) {
 
 function displayCompanies(items) {
     let items_div = document.getElementById("displayContent");
-    
+
     //clearing the display area
     while (items_div.firstChild) {
         items_div.removeChild(items_div.firstChild);
@@ -505,7 +505,7 @@ function displayCompanies(items) {
             + '' + '<br/>'
             + 'CompanyURL: ' + items[i].logoUrl + '<br/>'
             + 'Website: ' + items[i].websiteUrl + '</div>\n' + '<br/>'
-            + 'Industry: ' + items[i].industry  + '</div>\n' + '<br/>'
+            + 'Industry: ' + items[i].industry + '</div>\n' + '<br/>'
             + '<p> Specialties Information </p>'
             + "Salary type: " + items[i].specialties + '</div>\n' + '<br/>';
 
@@ -528,7 +528,7 @@ function displayCompanies(items) {
     }
 }
 
- function postedJobs() {
+function postedJobs() {
     var url = '/search/users/' + localStorage.getItem("selectedUser");
 
     let p = fetch(url);
@@ -582,194 +582,197 @@ function displayPostedJobs(items) {
         items_div.appendChild(div);
     }
 }
-    
-function displayAppliedJobs(){
+
+function displayAppliedJobs() {
 
     userId = getCookie().u_Id;
 
-    let url="/display/jobs/" + localStorage.getItem("selectedUser");
-    let p=fetch(url);
+    let url = "/search/user/job/" + userId + "/";
+    let p = fetch(url);
 
-    p.then((response)=>{
-        return response.json();
+    p.then((response) => {
+        // console.log(response.text());
+        return response.text();
     })
-
-    .then((data)=>{
-
-        if (data.length==0){
-            let section=document.getElementById("profile-info");
-            section.innerHTML="";
-            section.innerHTML="You have not applied to jobs yet";
-
-        }
-
-        else{se
-
-                let section=document.getElementById("profile-info");
-                section.innerHTML="";
-
-
-            for (i in data){
-                let div= document.createElement("div");
-
-
-                let title= document.createElement("div");
-                title.innerHTML=data[i].title;
-                div.appendChild(title);
-
-                let description =document.createElement("div");
-                description.innerHTML="Description: " + data[i].description;
-                div.appendChild(description);
-
-                let company =document.createElement("div");
-                company.innerHTML="Company: "+data[i].company;
-                div.appendChild(company);
-
-                let location =document.createElement("div");
-                location.innerHTML="Location: "+data[i].location;
-                div.appendChild(location);
-
-                let employmentType =document.createElement("div");
-                employmentType.innerHTML="Type: "+data[i].employmentType;
-                div.appendChild(employmentType);
-
-                let experienceLevel =document.createElement("div");
-                experienceLevel.innerHTML= "Experience Level: "+ data[i].experienceLevel;
-                div.appendChild(experienceLevel);
-
-                let educationLevel =document.createElement("div");
-                educationLevel.innerHTML="Education Level: "+ data[i].educationLevel;
-                div.appendChild(educationLevel);
-
-                let salary= document.createElement("div");
-                salary.innerHTML= "Salary: "+data[i].salary.amount+ " "+ data[i].salary.currency;
-                div.appendChild(salary);
-
-                div.id="applied_job";
-
-                section.appendChild(div);
+        .then((data) => {
+            console.log('data : ' + data);
+            if (data.length < 1 || data == "fail" || data == 'no Applier') {
+                let section = document.getElementById("profile-info");
+                section.innerHTML = "";
+                section.innerHTML = "You have not applied to jobs yet";
+                console.log("You have not applied to jobs yet");
+                return;
             }
-        }
 
-    }).catch((error) => {
-        console.log('THERE WAS A PROBLEM');
-        console.log(error);
+            else {
+                data = JSON.parse(data);
+                let section = document.getElementById("profile-info");
+                section.innerHTML = "";
+
+
+                for (i in data) {
+                    
+
+                    let div = document.createElement("div");
+
+
+                    let title = document.createElement("div");
+                    title.innerHTML = data[i].title;
+                    div.appendChild(title);
+
+                    let description = document.createElement("div");
+                    description.innerHTML = "Description: " + data[i].description;
+                    div.appendChild(description);
+
+                    let company = document.createElement("div");
+                    company.innerHTML = "Company: " + data[i].company;
+                    div.appendChild(company);
+
+                    let location = document.createElement("div");
+                    location.innerHTML = "Location: " + data[i].location;
+                    div.appendChild(location);
+
+                    let employmentType = document.createElement("div");
+                    employmentType.innerHTML = "Type: " + data[i].employmentType;
+                    div.appendChild(employmentType);
+
+                    let experienceLevel = document.createElement("div");
+                    experienceLevel.innerHTML = "Experience Level: " + data[i].experienceLevel;
+                    div.appendChild(experienceLevel);
+
+                    let educationLevel = document.createElement("div");
+                    educationLevel.innerHTML = "Education Level: " + data[i].educationLevel;
+                    div.appendChild(educationLevel);
+
+                    let salary = document.createElement("div");
+                    salary.innerHTML = "Salary: " + data[i].salary.amount + " " + data[i].salary.currency;
+                    div.appendChild(salary);
+
+                    div.id = "applied_job";
+
+                    section.appendChild(div);
+                }
+            }
+
+        }).catch((error) => {
+            console.log('THERE WAS A PROBLEM');
+            console.log(error);
+        });
+
+}
+
+
+
+function save2() {
+
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let about = document.getElementById("about").value;
+
+    const data = { firstname: fname, lastname: lname, about: about };
+
+    let url = "/save2/data/";
+
+    let p = fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    });
+
+
+    p.then((response) => {
+        return response.text;
+    });
+
+    p.then((data) => {
+        if (data == "saved")
+            alert("Saved");
     });
 
 }
 
 
+function save3() {
 
-function save2(){
+    let country = document.getElementById("country").value;
+    let city = document.getElementById("city").value;
 
-    let fname=document.getElementById("fname").value;
-    let lname=document.getElementById("lname").value;
-    let about=document.getElementById("about").value;
+    const data = { country: country, city: city };
 
-    const data ={ firstname:fname,lastname:lname,about:about };
-
-    let url="/save2/data/";
+    let url = "/save3/data/";
 
     let p = fetch(url, {
-        method: 'POST', 
+        method: 'POST',
         body: JSON.stringify(data),
-        headers: {"Content-Type": "application/json"}
+        headers: { "Content-Type": "application/json" }
     });
 
 
-    p.then((response)=>{
+    p.then((response) => {
         return response.text;
     });
 
-    p.then((data)=>{
-        if(data=="saved")
-        alert("Saved");
+    p.then((data) => {
+        if (data == "saved")
+            alert("Saved");
     });
 
 }
 
+function save4() {
 
-function save3(){
+    let instituation = document.getElementById("instituation").value;
+    let degree = document.getElementById("degree").value;
+    let field = document.getElementById("field").value;
+    let start = document.getElementById("start").value;
+    let end = document.getElementById("start").value;
 
-    let country=document.getElementById("country").value;
-    let city=document.getElementById("city").value;
+    const data = { instituation: instituation, degree: degree, field: field, start: start, end: end };
 
-    const data ={country:country,city:city};
-
-    let url="/save3/data/";
+    let url = "/save4/data/";
 
     let p = fetch(url, {
-        method: 'POST', 
+        method: 'POST',
         body: JSON.stringify(data),
-        headers: {"Content-Type": "application/json"}
+        headers: { "Content-Type": "application/json" }
     });
 
 
-    p.then((response)=>{
+    p.then((response) => {
         return response.text;
     });
 
-    p.then((data)=>{
-        if(data=="saved")
-        alert("Saved");
+    p.then((data) => {
+        if (data == "saved")
+            alert("Saved");
     });
 
 }
 
-function save4(){
+function save5() {
 
-    let instituation=document.getElementById("instituation").value;
-    let degree=document.getElementById("degree").value;
-    let field=document.getElementById("field").value;
-    let start=document.getElementById("start").value;
-    let end=document.getElementById("start").value;
+    let website = document.getElementById("website").value;
+    let linkedin = document.getElementById("linkedin").value;
+    let portfolio = document.getElementById("portfolio").value;
 
-    const data ={instituation:instituation,degree:degree,field:field,start:start,end:end};
-    
-    let url="/save4/data/";
+    const data = { website: website, linkedin: linkedin, portfolio: portfolio };
+
+    let url = "/save5/data/";
 
     let p = fetch(url, {
-        method: 'POST', 
+        method: 'POST',
         body: JSON.stringify(data),
-        headers: {"Content-Type": "application/json"}
+        headers: { "Content-Type": "application/json" }
     });
 
 
-    p.then((response)=>{
+    p.then((response) => {
         return response.text;
     });
 
-    p.then((data)=>{
-        if(data=="saved")
-        alert("Saved");
-    });
-
-}
-
-function save5(){
-
-    let website=document.getElementById("website").value;
-    let linkedin=document.getElementById("linkedin").value;
-    let portfolio=document.getElementById("portfolio").value;
-
-    const data ={website:website,linkedin:linkedin,portfolio:portfolio};
-    
-    let url="/save5/data/";
-
-    let p = fetch(url, {
-        method: 'POST', 
-        body: JSON.stringify(data),
-        headers: {"Content-Type": "application/json"}
-    });
-
-
-    p.then((response)=>{
-        return response.text;
-    });
-
-    p.then((data)=>{
-        if(data=="saved")
-        alert("Saved");
+    p.then((data) => {
+        if (data == "saved")
+            alert("Saved");
     });
 
 }
