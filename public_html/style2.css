@@ -14,7 +14,7 @@ body{
     left: 0;
     right: 0;
 
-    color: #8D99AE;
+    color: #F4F1DE;
     display:flex;
     justify-content:space-between;
     align-items:center ;
@@ -26,15 +26,18 @@ body{
     cursor:pointer;
 }
 
+#header p {
+    z-index:100;
+    cursor:pointer;
+}
+
 #logo{
-    color: #8D99AE;
     font-family: 'Dongle', sans-serif;
     font-size:60px;
     margin-left:6vw;
 }
 
 #info{
-    color: #8D99AE;
     display: flex;
     align-items:center ;
     font-family: 'Abel';
@@ -129,7 +132,7 @@ select{
     position: fixed;
     flex-direction: column;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    padding-top:65px;
+    padding-top:15vh;
     cursor:pointer;
 }
 
@@ -153,12 +156,12 @@ select{
     font-family: 'Lato', sans-serif;
     float:left;
     width:100%;
-    padding-top:65px;
+    padding-top:15vh;
 }   
 
 
 #profile-title{
-    font-family: 'Dongle';
+    font-family: 'Abel';
     font-size:4vw;
     margin-left:26vw;
 }
@@ -187,12 +190,16 @@ select{
     padding-top: 15px 0px;
 }
 
+#displayContent {
+    width: 50%;
+}
+
 /* displaying the postings */
 #posting {
     position: relative;
     width: 40%;
     color: #8D99AE;
-    font-family: Abel;
+    font-family: 'Abel';
     font-size: 1.5em;
     margin: 3em;
     float: left;
@@ -205,7 +212,7 @@ select{
     position: relative;
     width: 40%;
     color: #8D99AE;
-    font-family: Abel;
+    font-family: 'Abel';
     font-size: 1.5em;
     margin: 3em;
     float: right;
@@ -213,6 +220,7 @@ select{
     border: dashed 2px rgb(29, 29, 83);
     text-align: center;
 }
+
 #posting p {
     margin-bottom: 0px;
 }
@@ -228,10 +236,11 @@ select{
 
 #job-post{
     position:relative;
-    top:80px;
+    top:15vh;
     border:4px dashed #3D405B;
     width:50%;
     margin:auto;
+    font-family: 'Abel';
 }
 
 

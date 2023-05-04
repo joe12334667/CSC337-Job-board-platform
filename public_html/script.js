@@ -3,6 +3,7 @@
 // it contain a function that need to be called when the event happens.
 
 const URL = "http://localhost";
+selectedUser = '';
 
 // check user's info to login in.
 function userLogin() {
@@ -10,13 +11,14 @@ function userLogin() {
     var u = document.getElementById("username_login").value;
     var p = document.getElementById("password_login").value;
 
-    let url = URL + '/account/login/' + u + '/' + p + '/';
+    localStorage.setItem("selectedUser", u);
+
+    let url = '/account/login/' + u + '/' + p + '/';
     fetch(url)
         .then((response) => {
             return response.text();
         })
         .then((text) => {
-            console.log('username' + u);
             if (JSON.parse(text)['status'] == true) {
                 searchUsername(u);
             } else {
@@ -163,6 +165,7 @@ function addPosting() {
         }
     }
 
+    console.log('employment ' + employment + ' experience ' + experience + ' education ')
     let url = URL + '/add/posting/';
     fetch(url, {
         method: 'POST',
@@ -192,15 +195,15 @@ function addPosting() {
         });
 }
 
-function searchUsername(u, at) {
-    console.log('i got here');
+function searchUsername(u) {
     var url = '/search/users/' + u;
 
     let p = fetch(url);
     let ps = p.then((results) => {
         return results.json();
     }).then((items) => {
-        if (items[0].accountType == 'recruiter' || at == "recruiter") {
+        console.log(items[0].accountType)
+        if (items[0].accountType == 'recruiter') {
             window.location.href = "/job_post.html";
         } else {
             //job seeker
@@ -294,7 +297,8 @@ function searchCompany(title) {
     let ps = p.then( (results) => {
       return results.json();
     }).then((items) => { 
-        console.log(items)
+        console.log(items);
+        displayCompanies(items);
     }).catch(() => { 
       alert('something went wrong');
     });
@@ -329,53 +333,6 @@ function JobSearchUsedRecruiterUserId(RId){
             console.log(error);
         });
 
-}
-
-function displayPostings(items) {
-    let items_div = document.getElementById("displayContent");
-
-    //clearing the display area
-    while (items_div.firstChild) {
-        items_div.removeChild(items_div.firstChild);
-    }
-
-    if (items.length == 0) {
-        items_div.innerHTML = 'No job results found. Try redefining your search terms';
-    }
-
-    for (let i = 0; i < items.length; i++) {
-        //here is where i wanted to grab every company
-        searchCompany(items[i].title);
-        console.log(items[i].title);
-        var salary = items[i].salary;
-        formatString = '<div' + '">'
-            + items[i].title.bold() + '<br/>'
-            + '<p> Job Description </p>'
-            + items[i].description + '<br/>'
-            + '' + '<br/>'
-            + 'Company: ' + items[i].company + '<br/>'
-            + 'Field location: ' + items[i].location + '</div>\n' + '<br/>'
-            + 'Job type: ' + items[i].employmentType  + '</div>\n' + '<br/>'
-            + '<p> Salary Information </p>'
-            + "Salary type: " + salary.JobType + '<br/>' + " Starting salary: " + salary.amount + '<br/>' + " Currency type: " + salary.currency + '<br/>'
-            + '<p> Date Posted: </p>' + items[i].createdAt + '</div>\n' + '<br/>';
-
-        //styling the new div
-        let div = document.createElement("div");
-        div.setAttribute('id', 'posting');
-        div.innerHTML = formatString;
-
-        // add apply button
-        let button = document.createElement('button');
-        button.textContent = 'Apply';
-        button.id = items[i]['_id'];
-        button.onclick = () => {
-            applyJob(button);
-        };
-        div.appendChild(button);
-
-        items_div.appendChild(div);
-    }
 }
 
 function applyJob(job) {
@@ -414,21 +371,23 @@ function sendUToProfile() {
     window.location.href = "/User_profile.html";
 }
 
-function sendRToProfile(){
+function sendRToProfile() {
     window.location.href = "/recruiter_profile.html";
 }
 
-function sendToHelp(){
+function sendToHelp() {
     window.location.href = "/help.html";
 }
 
-function sendToJobs(){
-    console.log('hello?')
+function sendToJobs() {
     window.location.href = "/User_home.html";
 }
 
-function addExperience(){
+function sendToPostings() {
+    window.location.href = "/job_post.html";
+}
 
+function addExperience() {
     const experience= document.getElementById("experience-info");
     const div= document.createElement("div");
 
@@ -476,4 +435,109 @@ function addExperience(){
     div.id="experience-info";
 
     experience.appendChild(div);
+}
+
+
+function displayPostings(items) {
+    let items_div = document.getElementById("displayContent");
+
+    //clearing the display area
+    while (items_div.firstChild) {
+        items_div.removeChild(items_div.firstChild);
+    }
+
+    if (items.length == 0) {
+        items_div.innerHTML = 'No job results found. Try redefining your search terms';
+    }
+
+    for (let i = 0; i < items.length; i++) {
+        //here is where i wanted to grab every company
+        // searchCompany(items[i].company);
+        console.log(items[i].title);
+        var salary = items[i].salary;
+        formatString = '<div' + '">'
+            + items[i].title.bold() + '<br/>'
+            + '<p> Job Description </p>'
+            + items[i].description + '<br/>'
+            + '' + '<br/>'
+            + 'Company: ' + items[i].company + '<br/>'
+            + 'Field location: ' + items[i].location + '</div>\n' + '<br/>'
+            + 'Job type: ' + items[i].employmentType  + '</div>\n' + '<br/>'
+            + '<p> Salary Information </p>'
+            + "Salary type: " + salary.JobType + '<br/>' + " Starting salary: " + salary.amount + '<br/>' + " Currency type: " + salary.currency + '<br/>'
+            + '<p> Date Posted: </p>' + items[i].createdAt + '</div>\n' + '<br/>';
+
+        //styling the new div
+        let div = document.createElement("div");
+        div.setAttribute('id', 'posting');
+        div.innerHTML = formatString;
+
+        // add apply button
+        let button = document.createElement('button');
+        button.textContent = 'Apply';
+        button.id = items[i]['_id'];
+        button.onclick = () => {
+            applyJob(button);
+        };
+        div.appendChild(button);
+
+        items_div.appendChild(div);
+    }
+}
+
+function postedJobs() {
+    var url = '/search/users/' + localStorage.getItem("selectedUser");
+
+    let p = fetch(url);
+    let ps = p.then((results) => {
+        return results.json();
+    }).then((items) => {
+        displayPostedJobs(items);
+    }).catch(() => {
+        alert('something went wrong');
+    });
+}
+
+function displayApplications() {
+    let items_div = document.getElementById("profile-info");
+
+    //clearing the display area
+    while (items_div.firstChild) {
+        items_div.removeChild(items_div.firstChild);
+    }
+
+}
+
+function displayPostedJobs(items) {
+    let items_div = document.getElementById("profile-info");
+
+    //clearing the display area
+    while (items_div.firstChild) {
+        items_div.removeChild(items_div.firstChild);
+    }
+
+    for (let i = 0; i < items.length; i++) {
+        //here is where i wanted to grab every company
+        formatString = '<div' + '">'
+            + items[i].postedJobs + '<br/>'
+
+
+        //styling the new div
+        let div = document.createElement("div");
+        div.setAttribute('id', 'profile-section');
+        div.innerHTML = formatString;
+
+        // add apply button
+        let button = document.createElement('button');
+        button.textContent = 'Apply';
+        button.id = items[i]['_id'];
+        button.onclick = () => {
+            applyJob(button);
+        };
+        div.appendChild(button);
+
+        items_div.appendChild(div);
+    }
+    
+
 }

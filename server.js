@@ -186,7 +186,8 @@ async function startServer() {
                     var newUser = new User({
                         username: req.body.username,
                         hash: hs,
-                        email: req.body.email
+                        email: req.body.email,
+                        accountType: req.body.accountType
                     });
                     newUser.save();
                     res.end("saved user");

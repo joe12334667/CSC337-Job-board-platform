@@ -25,7 +25,7 @@ body{
     left: 0;
     right: 0;
 
-    color: #8D99AE;
+    color: #F4F1DE;
     display:flex;
     justify-content:space-between;
     align-items:center ;
@@ -38,14 +38,12 @@ body{
 }
 
 #logo{
-    color: #8D99AE;
     font-family: 'Dongle', sans-serif;
     font-size:60px;
     margin-left:6vw;
 }
 
 #info{
-    color: #8D99AE;
     display: flex;
     align-items:center ;
     font-family: 'Abel';
@@ -220,10 +218,13 @@ fieldset {
     top: 13vh;
     left:0;
     right:0;
-    background-color: #cdd7dc;
+    color:#3D405B
 }
 
 #help {
+    position: relative;
     text-align: center;
-    color: #8D99AE;
+    color: #2B2D42;
+    background-color: #8D99AE;
+    padding:2vh;
 }
