@@ -346,6 +346,42 @@ async function startServer() {
 
     });
 
+    app.get("/display/jobs/:userid",(req,res)=>{
+
+        let userid=req.params.userid;
+
+        let p= User.find({ _id: userid }).exec();
+           
+        p.then((results) => {
+
+            let jobsId= results[0].AppliedJobs;
+
+            var jobs=[];
+            let promises = [];
+    
+            for (let i = 0; i < jobsId.length; i++) {
+                let p2 = Job.findOne({ _id: jobsId[i] }).exec();
+                promises.push(p2);
+            }
+    
+            Promise.all(promises).then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    jobs.push(data[i]);
+                }
+                res.send(JSON.stringify(jobs));
+                
+            })
+
+                
+        });
+        
+        p.catch((error) => {
+                console.log(error);
+                res.end('FAIL');
+        });
+
+    });
+
 
 
     // .then((and) => {
