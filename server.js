@@ -208,8 +208,23 @@ async function startServer() {
             employmentType: req.body.employmentType,
             experienceLevel: req.body.experienceLevel,
             educationLevel: req.body.educationLevel,
+            postedBy: req.body.postedBy,
         });
-        newJob.save();
+        newJob.save().then((re) => {
+            jobId = re._id;
+            let arr2 = [];
+            User.findOne({ _id: req.body.postedBy.RecruiterUserId }).then((result) => {
+                if (result.PostedJobs != undefined) arr2 = result.PostedJobs;
+                for (job in arr2) {
+                    if (arr2[job] == jobId) return;
+                }
+                arr2.push(jobId);
+                User.findOneAndUpdate({ _id: req.body.postedBy.RecruiterUserId }, { PostedJobs: arr2 }).exec();
+            });
+
+
+        });
+
         res.end("saved job");
     });
 
@@ -282,7 +297,7 @@ async function startServer() {
 
     app.get('/search/company/:companyName', async function (req, res) {
         CompanyProfile.findOne({ name: new RegExp('\w*' + req.params.companyName.trim().toLowerCase() + '\w*', "i") }).then((results) => {
-            if(!results) return res.end('not find');
+            if (!results) return res.end('not find');
             return res.end(JSON.stringify(results));
         }).catch((err) => { console.log(err); res.end("fail"); });
     });
@@ -347,38 +362,38 @@ async function startServer() {
 
     });
 
-    app.get("/display/jobs/:userid",(req,res)=>{
+    app.get("/display/jobs/:userid", (req, res) => {
 
-        let userid=req.params.userid;
+        let userid = req.params.userid;
 
-        let p= User.find({ _id: userid }).exec();
-           
+        let p = User.find({ _id: userid }).exec();
+
         p.then((results) => {
 
-            let jobsId= results[0].AppliedJobs;
+            let jobsId = results[0].AppliedJobs;
 
-            var jobs=[];
+            var jobs = [];
             let promises = [];
-    
+
             for (let i = 0; i < jobsId.length; i++) {
                 let p2 = Job.findOne({ _id: jobsId[i] }).exec();
                 promises.push(p2);
             }
-    
+
             Promise.all(promises).then((data) => {
                 for (let i = 0; i < data.length; i++) {
                     jobs.push(data[i]);
                 }
                 res.send(JSON.stringify(jobs));
-                
+
             })
 
-                
+
         });
-        
+
         p.catch((error) => {
-                console.log(error);
-                res.end('FAIL');
+            console.log(error);
+            res.end('FAIL');
         });
 
     });

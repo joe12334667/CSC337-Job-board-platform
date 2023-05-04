@@ -177,6 +177,10 @@ function addPosting() {
             employmentType: employment,
             experienceLevel: experience,
             educationLevel: education,
+            postedBy : {
+                RecruiterUserId : getCookie().u_Id,
+                RecruiterUserName : getCookie().username,
+            },
         }),
         headers: {
             'Content-type': 'application/json',
