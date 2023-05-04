@@ -280,28 +280,14 @@ function searchJob() {
 function searchCompany() {
     var n = document.getElementById("title").value;
 
-    let url = URL + '/search/job/';
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-            title: "",
-            company: n,
-            description: "",
-            location: "",
-            date: "",
-            amount: "",
-            employmentType: "",
-        }),
-        headers: {
-            'Content-type': 'application/json',
-        }
-    })
+    let url = URL + '/search/company/' +n +  '/';
+    fetch(url)
         .then((response) => {
             return response.json();
         })
         .then((text) => {
             console.log(text);
-            displayPostings(text);
+            displayCompanies(text);
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');

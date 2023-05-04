@@ -296,8 +296,8 @@ async function startServer() {
 
 
     app.get('/search/company/:companyName', async function (req, res) {
-        CompanyProfile.findOne({ name: new RegExp('\w*' + req.params.companyName.trim().toLowerCase() + '\w*', "i") }).then((results) => {
-            if (!results) return res.end('not find');
+        CompanyProfile.find({ name: new RegExp('\w*' + req.params.companyName.trim().toLowerCase() + '\w*', "i") }).then((results) => {
+            if (results.length < 1) return res.end('not find');
             return res.end(JSON.stringify(results));
         }).catch((err) => { console.log(err); res.end("fail"); });
     });
