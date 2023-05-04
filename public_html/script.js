@@ -582,5 +582,77 @@ function displayPostedJobs(items) {
         items_div.appendChild(div);
     }
     
+function displayAppliedJobs(){
+
+    userId = getCookie().u_Id;
+
+    let url="/display/jobs/"+userId;
+
+    let p=fetch(url);
+
+    p.then((response)=>{
+        return response.json();
+    })
+
+    .then((data)=>{
+
+        if (data.length==0){
+            let section=document.getElementById("profile-info");
+            section.innerHTML="";
+            section.innerHTML="You have not applied to jobs yet";
+
+        }
+
+        else{
+
+            for (i in data){
+
+                let section=document.getElementById("profile-info");
+                section.innerHTML="";
+
+                let div= document.createElement("div");
+
+                let title= document.createElement("div");
+                title.innerHTML=data[i].title;
+                div.appendChild(title);
+
+                let description =document.createElement("div");
+                description.innerHTML="Description: " + data[i].description;
+                div.appendChild(description);
+
+                let company =document.createElement("div");
+                company.innerHTML="Company: "+data[i].company;
+                div.appendChild(company);
+
+                let location =document.createElement("div");
+                location.innerHTML="Location: "+data[i].location;
+                div.appendChild(location);
+
+                let employmentType =document.createElement("div");
+                employmentType.innerHTML="Type: "+data[i].employmentType;
+                div.appendChild(employmentType);
+
+                let experienceLevel =document.createElement("div");
+                experienceLevel.innerHTML= "Experience Level: "+ data[i].experienceLevel;
+                div.appendChild(experienceLevel);
+
+                let educationLevel =document.createElement("div");
+                educationLevel.innerHTML="Education Level: "+ data[i].educationLevel;
+                div.appendChild(educationLevel);
+
+                let salary= document.createElement("div");
+                salary.innerHTML= "Salary: "+data[i].salary.amount+ " "+ data[i].salary.currency;
+                div.appendChild(salary);
+
+                div.id="applied_job";
+
+                section.appendChild(div);
+            }
+        }
+
+    }).catch((error) => {
+        console.log('THERE WAS A PROBLEM');
+        console.log(error);
+    });
 
 }
