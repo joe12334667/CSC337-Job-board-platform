@@ -241,24 +241,6 @@ function searchJob() {
         e = "";
     }
 
-
-
-    // var c = document.getElementById("company").value;
-    // var l = document.getElementById("location").value;
-
-    console.log(JSON.stringify({
-        title: t,
-        company: t,
-        description: t,
-        location: l,
-        date: d,
-        amount: a,
-        employmentType: e
-        // employmentType: employment,
-        // experienceLevel: experience,
-        // educationLevel: education,
-    }));
-
     let url = URL + '/search/job/';
     fetch(url, {
         method: 'POST',
@@ -282,6 +264,7 @@ function searchJob() {
             return response.json();
         })
         .then((text) => {
+            console.log(text);
             displayPostings(text);
         })
         .catch((error) => {
@@ -293,14 +276,14 @@ function searchJob() {
 function searchCompany() {
     var n = document.getElementById("title").value;
 
-    let url = '/search/company/' + n + '/';
+    let url = URL + '/search/company/' + n + '/';
 
     let p = fetch(url);
     let ps = p.then( (results) => {
-      return results.text();
+      return results.json();
     }).then((items) => { 
         console.log(items);
-        // displayCompanies(items);
+        displayCompanies(items);
     }).catch((err) => { 
         console.log(err);
       alert('something went wrong');
@@ -329,6 +312,7 @@ function JobSearchUsedRecruiterUserId(RId){
             return response.json();
         })
         .then((text) => {
+            console.log(text);
             displayPostings(text);
         })
         .catch((error) => {
@@ -505,10 +489,21 @@ function displayCompanies(items) {
         items_div.innerHTML = 'No job results found. Try redefining your search terms';
     }
 
+    console.log(items);
     for (let i = 0; i < items.length; i++) {
+        console.log(items[i].name);
         //here is where i wanted to grab every company
         formatString = '<div' + '">'
-            + items[i].name.bold() + '<br/>';
+            + items[i].name.bold() + '<br/>'
+            + '<p> Company Description </p>'
+            + items[i].description + '<br/>'
+            + '' + '<br/>'
+            + 'CompanyURL: ' + items[i].logoUrl + '<br/>'
+            + 'Website: ' + items[i].websiteUrl + '</div>\n' + '<br/>'
+            + 'Industry: ' + items[i].industry  + '</div>\n' + '<br/>'
+            + '<p> Specialties Information </p>'
+            + "Salary type: " + items[i].specialties + '</div>\n' + '<br/>';
+
 
         //styling the new div
         let div = document.createElement("div");
@@ -581,13 +576,13 @@ function displayPostedJobs(items) {
 
         items_div.appendChild(div);
     }
-    
-function displayAppliedJobs(){
+}
+
+function displayAppliedJobs() {
 
     userId = getCookie().u_Id;
 
-    let url="/display/jobs/"+userId;
-
+    let url="/display/jobs/" + localStorage.getItem("selectedUser");
     let p=fetch(url);
 
     p.then((response)=>{
@@ -654,5 +649,4 @@ function displayAppliedJobs(){
         console.log('THERE WAS A PROBLEM');
         console.log(error);
     });
-
 }

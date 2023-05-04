@@ -86,6 +86,7 @@ body{
     background-color: #d8e0e37a;
     border: solid 1px #d8e0e3c0;
     box-shadow: 10px 10px #d8e0e3d9;
+    align-items: center;
 }
 
 #createAccount {
@@ -142,7 +143,7 @@ body{
     display: inline-block; 
     margin-top: 5px;
     margin-left: 3vh;
-    font-size: large;
+    font-size: 2vh;
     width: 30vh; 
     text-align: right;
 }
@@ -172,6 +173,10 @@ body{
     font-weight: bolder;    
 }
 
+.accountInput {
+    height: 2.5vh;
+
+}
 fieldset {
     margin-top: 3vh;
     width: auto;
@@ -227,4 +232,14 @@ fieldset {
     color: #2B2D42;
     background-color: #8D99AE;
     padding:2vh;
+}
+
+.userTypes {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userTypes p {
+    text-align: center;
 }

@@ -11,7 +11,7 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">    <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">    
     <title>Home</title>
 
 </head>
@@ -20,13 +20,15 @@
         <div><h1 id="logo"> Job Board </h1></div>
 
         <div id="info"> 
-           <div> <p onclick="sendToJobs()"> Jobs </p> </div> 
-            <div> <p> Companies </p>  </div>
-            <div> <i id="profile" class="fa-solid fa-user" onclick="sendUToProfile()"></i> </div>
+            <div id="jobpost">
+                <i class="fa-solid fa-briefcase"></i>
+                <p onclick="sendToJobs()"> Jobs </p><br>
+            </div>
+        <div> <p onclick="sendToCompanies()"> Companies </p>  </div>
+        <div> <p onclick="sendToHelp()"> Help Page </p></div>
+        <div> <i id="profile" class="fa-solid fa-user" onclick="sendUToProfile()"></i> </div>
         </div> 
     </div>
-
-
 
         <div id="search">
             <input type="text" id="title" placeholder=" Company names..."> 
