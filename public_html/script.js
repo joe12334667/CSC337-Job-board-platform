@@ -284,7 +284,13 @@ function searchCompany() {
     fetch(url, {
         method: 'POST',
         body: JSON.stringify({
-            name: n
+            title: "",
+            company: n,
+            description: "",
+            location: "",
+            date: "",
+            amount: "",
+            employmentType: "",
         }),
         headers: {
             'Content-type': 'application/json',
@@ -295,6 +301,7 @@ function searchCompany() {
         })
         .then((text) => {
             console.log(text);
+            displayPostings(text);
         })
         .catch((error) => {
             console.log('THERE WAS A PROBLEM');
