@@ -552,35 +552,124 @@ function displayApplications() {
 
 }
 
-function displayPostedJobs(items) {
-    let items_div = document.getElementById("profile-info");
+function displayPostedJobs() {
+    // let items_div = document.getElementById("profile-info");
 
-    //clearing the display area
-    while (items_div.firstChild) {
-        items_div.removeChild(items_div.firstChild);
-    }
+    // //clearing the display area
+    // while (items_div.firstChild) {
+    //     items_div.removeChild(items_div.firstChild);
+    // }
 
-    for (let i = 0; i < items.length; i++) {
-        formatString = '<div' + '">'
-            + items[i].postedJobs + '<br/>'
+    // for (let i = 0; i < items.length; i++) {
+    //     formatString = '<div' + '">'
+    //         + items[i].postedJobs + '<br/>'
 
 
-        //styling the new div
-        let div = document.createElement("div");
-        div.setAttribute('id', 'profile-section');
-        div.innerHTML = formatString;
+    //     //styling the new div
+    //     let div = document.createElement("div");
+    //     div.setAttribute('id', 'profile-section');
+    //     div.innerHTML = formatString;
 
-        // add apply button
-        let button = document.createElement('button');
-        button.textContent = 'Apply';
-        button.id = items[i]['_id'];
-        button.onclick = () => {
-            applyJob(button);
-        };
-        div.appendChild(button);
+    //     // add apply button
+    //     let button = document.createElement('button');
+    //     button.textContent = 'Apply';
+    //     button.id = items[i]['_id'];
+    //     button.onclick = () => {
+    //         applyJob(button);
+    //     };
+    //     div.appendChild(button);
 
-        items_div.appendChild(div);
-    }
+    //     items_div.appendChild(div);
+    // }
+
+    userId = getCookie().u_Id;
+
+    let url = URL + '/search/job/';
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            title: "",
+            company: "",
+            description: "",
+            location: "",
+            date: "",
+            amount: "",
+            employmentType: "",
+            RecruiterUserId: userId
+        }),
+        headers: {
+            'Content-type': 'application/json',
+        }
+    })
+        .then((response) => {
+            return response.text();
+        })
+        .then((data) => {
+            data = JSON.parse(data);     
+            if (data.length < 1) {
+                let section = document.getElementById("profile-info");
+                section.innerHTML = "";
+                section.innerHTML = "You have not applied to jobs yet";
+                console.log("You have not applied to jobs yet");
+                return;
+            }
+
+            else {
+                // data = JSON.parse(data);
+                let section = document.getElementById("profile-info");
+                section.innerHTML = "";
+
+
+                for ( let i = 0; i < data.length; i++) {
+                    // console.log(data[0]);
+                    jsonData = data[i];
+                    let div = document.createElement("div");
+
+
+                    let title = document.createElement("div");
+                    title.innerHTML = jsonData.title;
+                    div.appendChild(title);
+
+                    let description = document.createElement("div");
+                    description.innerHTML = "Description: " + jsonData.description;
+                    div.appendChild(description);
+
+                    let company = document.createElement("div");
+                    company.innerHTML = "Company: " + jsonData.company;
+                    div.appendChild(company);
+
+                    let location = document.createElement("div");
+                    location.innerHTML = "Location: " + jsonData.location;
+                    div.appendChild(location);
+
+                    let employmentType = document.createElement("div");
+                    employmentType.innerHTML = "Type: " + jsonData.employmentType;
+                    div.appendChild(employmentType);
+
+                    let experienceLevel = document.createElement("div");
+                    experienceLevel.innerHTML = "Experience Level: " + jsonData.experienceLevel;
+                    div.appendChild(experienceLevel);
+
+                    let educationLevel = document.createElement("div");
+                    educationLevel.innerHTML = "Education Level: " + jsonData.educationLevel;
+                    div.appendChild(educationLevel);
+
+                    let salary = document.createElement("div");
+
+                    // salary.innerHTML = "Salary: " + jsonData.salary.amount + " " + jsonData.salary.currency;
+                    // div.appendChild(salary);
+
+                    div.id = "applied_job";
+
+                    section.appendChild(div);
+                }
+            }
+
+        }).catch((error) => {
+            console.log('THERE WAS A PROBLEM');
+            console.log(error);
+        });
+
 }
 
 function displayAppliedJobs() {
@@ -611,7 +700,7 @@ function displayAppliedJobs() {
 
 
                 for (i in data) {
-                    
+
 
                     let div = document.createElement("div");
 
