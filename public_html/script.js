@@ -286,7 +286,7 @@ function searchCompany() {
     let ps = p.then( (results) => {
       return results.json();
     }).then((items) => { 
-        console.log(items);
+        console.log(typeof items);
         displayCompanies(items);
     }).catch((err) => { 
         console.log(err);
